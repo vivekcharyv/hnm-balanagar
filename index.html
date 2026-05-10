@@ -18,26 +18,38 @@
                margin: 0 auto 1.5rem; }
     .btn { display: block; width: 100%; padding: 14px 20px; margin-bottom: 12px;
            border-radius: 10px; font-size: 15px; font-weight: 600;
-           text-decoration: none; color: #fff;
+           text-decoration: none; color: #fff; cursor: pointer; border: none;
            transition: transform 0.2s, filter 0.2s; }
     .btn:hover { transform: translateY(-2px); filter: brightness(0.88); }
     .wa  { background: #25D366; }
     .dir { background: #4285F4; }
+    .don { background: #c8a76b; }
     .yt  { background: #FF0000; }
     .ig  { background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
     hr   { border: none; border-top: 1px solid #eee; margin: 8px 0 16px; }
     .footer { color: #aaa; font-size: 12px; margin-top: 1.5rem; }
 
-    .donate-box { background: #fff8ee; border: 1.5px solid #c8a76b;
-                  border-radius: 12px; padding: 20px; margin-bottom: 12px; }
-    .donate-title { font-size: 16px; font-weight: 700; color: #2c1a00; margin-bottom: 14px; }
-    .donate-box img { width: 200px; height: 200px; border-radius: 8px;
-                      display: block; margin: 0 auto; }
+    /* Overlay */
+    .overlay { display: none; position: fixed; inset: 0;
+               background: rgba(0,0,0,0.6); z-index: 100;
+               align-items: center; justify-content: center; padding: 1rem; }
+    .overlay.active { display: flex; }
+
+    /* Popup */
+    .popup { background: #fff8ee; border-radius: 16px; padding: 24px 20px;
+             width: 100%; max-width: 340px; position: relative;
+             border: 1.5px solid #c8a76b; text-align: center; }
+    .popup-close { position: absolute; top: 12px; right: 14px;
+                   background: none; border: none; font-size: 22px;
+                   cursor: pointer; color: #888; line-height: 1; }
+    .popup-close:hover { color: #2c1a00; }
+    .popup-title { font-size: 17px; font-weight: 700; color: #2c1a00; margin-bottom: 16px; }
+    .popup img { width: 200px; height: 200px; border-radius: 8px;
+                 display: block; margin: 0 auto 16px; }
     .upi-id-box { display: flex; align-items: center; justify-content: center;
                   gap: 8px; background: #fff; border: 1px solid #e0c99a;
-                  border-radius: 8px; padding: 10px 14px; margin-top: 14px; }
-    .upi-id-text { font-size: 14px; font-weight: 600; color: #5f259f;
-                   letter-spacing: 0.3px; }
+                  border-radius: 8px; padding: 10px 14px; }
+    .upi-id-text { font-size: 14px; font-weight: 600; color: #5f259f; letter-spacing: 0.3px; }
     .copy-btn { background: #c8a76b; color: #fff; border: none; border-radius: 6px;
                 padding: 6px 12px; font-size: 13px; font-weight: 600;
                 cursor: pointer; transition: filter 0.2s; }
@@ -65,16 +77,9 @@
       📍 Get Directions to Center
     </a>
 
-    <div class="donate-box">
-      <div class="donate-title">🙏 Donate (UPI)</div>
-      <img src="donate-qr.jpg" alt="UPI QR Code - Harinaama Mandiram" />
-      <div class="upi-id-box">
-        <span class="upi-id-text" id="upiId">harinaamamandiram@ybl</span>
-        <button class="copy-btn" onclick="copyUPI()">Copy</button>
-      </div>
-      <div class="copy-msg" id="copyMsg"></div>
-      <div class="donate-hint">📷 Scan QR &nbsp;|&nbsp; or Copy UPI ID and pay in any app</div>
-    </div>
+    <button class="btn don" onclick="openDonate()">
+      🙏 Donate (UPI)
+    </button>
 
     <hr />
 
@@ -89,7 +94,34 @@
     <p class="footer">🙏 Hare Krishna · Hare Rama</p>
   </div>
 
+  <!-- Donate Popup -->
+  <div class="overlay" id="donateOverlay" onclick="closeOnOverlay(event)">
+    <div class="popup" id="donatePopup">
+      <button class="popup-close" onclick="closeDonate()">✕</button>
+      <div class="popup-title">🙏 Donate to Harinaama Mandiram</div>
+      <img src="donate-qr.jpg" alt="UPI QR Code" />
+      <div class="upi-id-box">
+        <span class="upi-id-text" id="upiId">harinaamamandiram@ybl</span>
+        <button class="copy-btn" onclick="copyUPI()">Copy</button>
+      </div>
+      <div class="copy-msg" id="copyMsg"></div>
+      <div class="donate-hint">📷 Scan QR &nbsp;|&nbsp; or Copy UPI ID and pay in any app</div>
+    </div>
+  </div>
+
   <script>
+    function openDonate() {
+      document.getElementById('donateOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeDonate() {
+      document.getElementById('donateOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+      document.getElementById('copyMsg').innerText = '';
+    }
+    function closeOnOverlay(e) {
+      if (e.target === document.getElementById('donateOverlay')) closeDonate();
+    }
     function copyUPI() {
       var upi = document.getElementById('upiId').innerText;
       navigator.clipboard.writeText(upi).then(function() {
