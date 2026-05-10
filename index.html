@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>HNM Balanagar</title>
+  <title>Harinaama Mandiram - Balanagar</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: #fdf8f2; font-family: Georgia, sans-serif; }
@@ -28,10 +28,27 @@
     .ig  { background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
     hr   { border: none; border-top: 1px solid #eee; margin: 8px 0 16px; }
     .footer { color: #aaa; font-size: 12px; margin-top: 1.5rem; }
+
+    .donate-box { background: #fff8ee; border: 1.5px solid #c8a76b;
+                  border-radius: 10px; padding: 16px; margin-bottom: 12px; }
+    .donate-box p { font-size: 13px; color: #888; margin-top: 8px; }
+    .donate-box .label { font-size: 15px; font-weight: 600;
+                         color: #2c1a00; margin-bottom: 12px; }
+    .upi-apps { display: flex; justify-content: center;
+                gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+    .upi-btn { display: inline-block; padding: 10px 18px; border-radius: 8px;
+               font-size: 14px; font-weight: 600; text-decoration: none;
+               color: #fff; transition: transform 0.2s, filter 0.2s; }
+    .upi-btn:hover { transform: translateY(-2px); filter: brightness(0.88); }
+    .phonepe { background: #5f259f; }
+    .gpay    { background: #1a73e8; }
+    .paytm   { background: #002970; }
+    .bhim    { background: #00529c; }
   </style>
 </head>
 <body>
   <div class="wrap">
+
     <img class="logo"
       src="https://cdn3.me-qr.com/constructor/user/1612910/1778340417.png"
       alt="Harinaama Mandiram Logo" />
@@ -42,16 +59,40 @@
     <a class="btn wa" href="https://chat.whatsapp.com/LXq5RLI1Y51BApi2Q5Ggvd" target="_blank" rel="noopener">
       📱 Join WhatsApp Group
     </a>
+
     <a class="btn dir" href="https://maps.app.goo.gl/LBKgXwGz3DFgzwQ38" target="_blank" rel="noopener">
       📍 Get Directions to Center
     </a>
-    <a class="btn don" href="upi://pay?pa=harinaamamandiram@ybl&pn=RAMPELLI%20%20JYOTHI&mc=0000&mode=02&purpose=00">
-      🙏 Donate (UPI)
-    </a>
+
+    <div class="donate-box">
+      <div class="label">🙏 Donate (UPI)</div>
+      <div class="upi-apps">
+        <a class="upi-btn phonepe"
+          href="upi://pay?pa=7095802750@ybl&pn=Harinaama%20Mandiram&cu=INR">
+          PhonePe
+        </a>
+        <a class="upi-btn gpay"
+          href="upi://pay?pa=7095802750@ybl&pn=Harinaama%20Mandiram&cu=INR">
+          GPay
+        </a>
+        <a class="upi-btn paytm"
+          href="upi://pay?pa=7095802750@ybl&pn=Harinaama%20Mandiram&cu=INR">
+          Paytm
+        </a>
+        <a class="upi-btn bhim"
+          href="upi://pay?pa=7095802750@ybl&pn=Harinaama%20Mandiram&cu=INR">
+          BHIM
+        </a>
+      </div>
+      <p>Tap your UPI app to donate</p>
+    </div>
+
     <hr />
+
     <a class="btn yt" href="https://www.youtube.com/@Kurmagrama" target="_blank" rel="noopener">
       ▶ @Harinama_Mandiram on YouTube
     </a>
+
     <a class="btn ig" href="https://www.instagram.com/kurmagrama" target="_blank" rel="noopener">
       📷 @Harinaama_Mandiram on Instagram
     </a>
