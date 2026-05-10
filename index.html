@@ -23,27 +23,28 @@
     .btn:hover { transform: translateY(-2px); filter: brightness(0.88); }
     .wa  { background: #25D366; }
     .dir { background: #4285F4; }
-    .don { background: #c8a76b; }
     .yt  { background: #FF0000; }
     .ig  { background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
     hr   { border: none; border-top: 1px solid #eee; margin: 8px 0 16px; }
     .footer { color: #aaa; font-size: 12px; margin-top: 1.5rem; }
 
     .donate-box { background: #fff8ee; border: 1.5px solid #c8a76b;
-                  border-radius: 10px; padding: 16px; margin-bottom: 12px; }
-    .donate-box p { font-size: 13px; color: #888; margin-top: 8px; }
-    .donate-box .label { font-size: 15px; font-weight: 600;
-                         color: #2c1a00; margin-bottom: 12px; }
-    .upi-apps { display: flex; justify-content: center;
-                gap: 10px; flex-wrap: wrap; margin-top: 12px; }
-    .upi-btn { display: inline-block; padding: 10px 18px; border-radius: 8px;
-               font-size: 14px; font-weight: 600; text-decoration: none;
-               color: #fff; transition: transform 0.2s, filter 0.2s; }
-    .upi-btn:hover { transform: translateY(-2px); filter: brightness(0.88); }
-    .phonepe { background: #5f259f; }
-    .gpay    { background: #1a73e8; }
-    .paytm   { background: #002970; }
-    .bhim    { background: #00529c; }
+                  border-radius: 12px; padding: 20px; margin-bottom: 12px; }
+    .donate-title { font-size: 16px; font-weight: 700; color: #2c1a00; margin-bottom: 14px; }
+    .donate-box img { width: 200px; height: 200px; border-radius: 8px;
+                      display: block; margin: 0 auto; }
+    .upi-id-box { display: flex; align-items: center; justify-content: center;
+                  gap: 8px; background: #fff; border: 1px solid #e0c99a;
+                  border-radius: 8px; padding: 10px 14px; margin-top: 14px; }
+    .upi-id-text { font-size: 14px; font-weight: 600; color: #5f259f;
+                   letter-spacing: 0.3px; }
+    .copy-btn { background: #c8a76b; color: #fff; border: none; border-radius: 6px;
+                padding: 6px 12px; font-size: 13px; font-weight: 600;
+                cursor: pointer; transition: filter 0.2s; }
+    .copy-btn:hover { filter: brightness(0.88); }
+    .copy-msg { font-size: 12px; color: #25D366; margin-top: 8px;
+                height: 16px; font-weight: 600; }
+    .donate-hint { font-size: 12px; color: #aaa; margin-top: 10px; }
   </style>
 </head>
 <body>
@@ -65,26 +66,14 @@
     </a>
 
     <div class="donate-box">
-      <div class="label">🙏 Donate (UPI)</div>
-      <div class="upi-apps">
-        <a class="upi-btn phonepe"
-          href="upi://pay?pa=7095802750@ybl&pn=Harinaama%20Mandiram&cu=INR">
-          PhonePe
-        </a>
-        <a class="upi-btn gpay"
-          href="upi://pay?pa=7095802750@ybl&pn=Harinaama%20Mandiram&cu=INR">
-          GPay
-        </a>
-        <a class="upi-btn paytm"
-          href="upi://pay?pa=7095802750@ybl&pn=Harinaama%20Mandiram&cu=INR">
-          Paytm
-        </a>
-        <a class="upi-btn bhim"
-          href="upi://pay?pa=7095802750@ybl&pn=Harinaama%20Mandiram&cu=INR">
-          BHIM
-        </a>
+      <div class="donate-title">🙏 Donate (UPI)</div>
+      <img src="donate-qr.jpg" alt="UPI QR Code - Harinaama Mandiram" />
+      <div class="upi-id-box">
+        <span class="upi-id-text" id="upiId">harinaamamandiram@ybl</span>
+        <button class="copy-btn" onclick="copyUPI()">Copy</button>
       </div>
-      <p>Tap your UPI app to donate</p>
+      <div class="copy-msg" id="copyMsg"></div>
+      <div class="donate-hint">📷 Scan QR &nbsp;|&nbsp; or Copy UPI ID and pay in any app</div>
     </div>
 
     <hr />
@@ -99,5 +88,16 @@
 
     <p class="footer">🙏 Hare Krishna · Hare Rama</p>
   </div>
+
+  <script>
+    function copyUPI() {
+      var upi = document.getElementById('upiId').innerText;
+      navigator.clipboard.writeText(upi).then(function() {
+        var msg = document.getElementById('copyMsg');
+        msg.innerText = '✅ UPI ID copied!';
+        setTimeout(function() { msg.innerText = ''; }, 3000);
+      });
+    }
+  </script>
 </body>
 </html>
